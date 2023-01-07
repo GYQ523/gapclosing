@@ -429,7 +429,9 @@ gapclosing <- function(
                        .groups = "drop") %>%
       dplyr::left_join(as.data.frame(gapclosing.no.se),
                        by = c(category_name,"estimand","estimator","primary")) %>%
-      dplyr::select(tidyselect::all_of(c(category_name, "estimand", "estimator", "primary", "estimate", "se")))
+      dplyr::select(tidyselect::all_of(c(category_name, "estimand", "estimator", "primary", "estimate", "se", "ci.min", "ci.max")))
+
+   
 
     results.list <- df_to_gapclosing_list(results.df)
     gapclosing.with.se <- c(results.list,
