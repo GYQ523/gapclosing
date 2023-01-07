@@ -422,10 +422,10 @@ gapclosing <- function(
     results.df <- bs_estimates %>%
       dplyr::group_by(dplyr::across(tidyselect::all_of(c(category_name, "estimand", "estimator", "primary")))) %>%
       dplyr::summarize(se = stats::sd(estimate),
-                       #ci.min = stats::quantile(estimate, probs = 0.025)[[1]],
-                       #ci.max = stats::quantile(estimate, probs = 0.975)[[1]],
-                       ci.min = stats::quantile(estimate, probs = 0.5)[[1]],
-                       ci.max = stats::quantile(estimate, probs = 0.5)[[1]],
+                       ci.min = stats::quantile(estimate, probs = 0.025)[[1]],
+                       ci.max = stats::quantile(estimate, probs = 0.975)[[1]],
+                       #ci.min = stats::quantile(estimate, probs = 0.5)[[1]],
+                       #ci.max = stats::quantile(estimate, probs = 0.5)[[1]],
                        .groups = "drop") %>%
       dplyr::left_join(as.data.frame(gapclosing.no.se),
                        by = c(category_name,"estimand","estimator","primary")) %>%
